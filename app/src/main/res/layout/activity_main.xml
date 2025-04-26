@@ -27,8 +27,7 @@
         android:id="@+id/textView"
         android:layout_width="248dp"
         android:layout_height="84dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginBottom="130dp"
+        android:layout_marginBottom="200dp"
         android:fontFamily="@font/lustria"
         android:text="@string/fitforge"
         android:textColor="#FBE8B6"
@@ -41,9 +40,9 @@
 
     <Button
         android:id="@+id/logbutt"
-        android:layout_width="134dp"
-        android:layout_height="83dp"
-        android:layout_marginBottom="80dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
         android:background="@drawable/for_buttons"
         android:gravity="center"
         android:text="@string/login"
@@ -51,7 +50,7 @@
         android:textColor="#050505"
         android:textSize="20sp"
         android:typeface="serif"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        android:layout_marginTop="500dp"
         app:layout_constraintEnd_toEndOf="@+id/button2"
         app:layout_constraintStart_toStartOf="@+id/button2"
         app:layout_constraintTop_toBottomOf="@+id/textView"
@@ -60,9 +59,9 @@
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="134dp"
-        android:layout_height="83dp"
-        android:layout_marginBottom="121dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
         android:background="@drawable/for_buttons"
         android:gravity="center"
         android:text="@string/sign_up"
@@ -74,13 +73,15 @@
         app:layout_constraintEnd_toEndOf="@+id/textView2"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@id/logbutt"
-        android:backgroundTint="@null"/>
+        android:backgroundTint="@null"
+        android:layout_marginTop="1dp"/>
+
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="94dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/make_your_first_step_towards_becoming_fit"
         android:textColor="#ffffff"
         android:textSize="16sp"
