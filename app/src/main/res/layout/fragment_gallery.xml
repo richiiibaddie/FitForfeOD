@@ -7,50 +7,44 @@
     android:background="@color/f5f5f5"
     tools:context=".ui.gallery.GalleryFragment">
 
-    <TextView
-        android:id="@+id/textGallery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <!-- Blue Background (Top Section) -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/topSection"
         android:layout_width="match_parent"
         android:layout_height="260dp"
         android:background="@drawable/top_background"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- Profile Image -->
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/imageViewProfile"
             android:layout_width="128dp"
             android:layout_height="108dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="36dp"
             android:layout_marginEnd="16dp"
             android:src="@drawable/icons8_test_account_96"
+            android:contentDescription="Profile picture"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- Username -->
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textViewUsername"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:text="Username"
+            android:text="Loading..."
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/imageView4" />
+            app:layout_constraintTop_toBottomOf="@id/imageViewProfile" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- ScrollView content -->
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/scrollViewProfile"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
@@ -62,23 +56,22 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="32dp">
 
-            <!-- Spacer to allow card to float into blue bg -->
             <View
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
-
-            <!-- White Card Overlapping -->
+                android:layout_height="200dp"
+                android:background="@android:color/transparent"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
                     android:id="@+id/whiteCard"
                     android:layout_width="match_parent"
-                    android:layout_height="400dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginEnd="24dp"
                     android:background="@drawable/white_bg"
@@ -87,29 +80,132 @@
                     android:padding="24dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.049">
-
-                    <!-- Example content inside card -->
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="12dp"
-                        android:paddingBottom="12dp">
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp">
 
                         <TextView
-                            android:id="@+id/textView6"
+                            android:id="@+id/textLabelFullname"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Fullname:"
                             android:textColor="@android:color/black"
-                            android:textSize="20sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textViewFullnameValue"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="Loading..."
+                            android:textColor="@android:color/black" android:textSize="18sp"
+                            app:layout_constraintEnd_toStartOf="@+id/changeFullname"
+                            app:layout_constraintStart_toEndOf="@+id/textLabelFullname"
+                            app:layout_constraintTop_toTopOf="@id/textLabelFullname"
+                            app:layout_constraintBottom_toBottomOf="@id/textLabelFullname"/>
+
+                        <TextView
+                            android:id="@+id/changeFullname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:padding="4dp"
+                            android:text="Change"
+                            android:textColor="@color/purple900"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@id/textLabelFullname"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/textLabelFullname" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp">
+
+                        <TextView
+                            android:id="@+id/textLabelEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Email:"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textViewEmailValue"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="Loading..."
+                            android:textColor="@android:color/black" android:textSize="18sp"
+                            app:layout_constraintEnd_toStartOf="@+id/changeEmail"
+                            app:layout_constraintStart_toEndOf="@+id/textLabelEmail"
+                            app:layout_constraintTop_toTopOf="@id/textLabelEmail"
+                            app:layout_constraintBottom_toBottomOf="@id/textLabelEmail"/>
+
+                        <TextView
+                            android:id="@+id/changeEmail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:padding="4dp"
+                            android:text="Change"
+                            android:textColor="@color/purple900"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="@id/textLabelEmail"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/textLabelEmail" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp">
+
+                        <TextView
+                            android:id="@+id/textLabelGender"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Gender:"
+                            android:textColor="@android:color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/textViewGenderValue"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="Loading..."
+                            android:textColor="@android:color/black" android:textSize="18sp"
+                            app:layout_constraintEnd_toStartOf="@+id/changeGender"
+                            app:layout_constraintStart_toEndOf="@+id/textLabelGender"
+                            app:layout_constraintTop_toTopOf="@id/textLabelGender"
+                            app:layout_constraintBottom_toBottomOf="@id/textLabelGender"/>
 
                         <TextView
                             android:id="@+id/changeGender"
@@ -117,160 +213,118 @@
                             android:layout_height="wrap_content"
                             android:clickable="true"
                             android:focusable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:padding="4dp"
                             android:text="Change"
                             android:textColor="@color/purple900"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@id/textView6"
+                            app:layout_constraintBottom_toBottomOf="@id/textLabelGender"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@id/textView6" />
-
-
+                            app:layout_constraintTop_toTopOf="@id/textLabelGender" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="12dp"
-                        android:paddingBottom="12dp">
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp">
 
                         <TextView
+                            android:id="@+id/textLabelCurrentWeight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Email:"
+                            android:text="Current Wt:"
                             android:textColor="@android:color/black"
-                            android:textSize="20sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
+                            android:id="@+id/textViewCurrentWeightValue"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="Loading..."
+                            android:textColor="@android:color/black" android:textSize="18sp"
+                            app:layout_constraintEnd_toStartOf="@+id/changeCurrentWeight"
+                            app:layout_constraintStart_toEndOf="@+id/textLabelCurrentWeight"
+                            app:layout_constraintTop_toTopOf="@id/textLabelCurrentWeight"
+                            app:layout_constraintBottom_toBottomOf="@id/textLabelCurrentWeight"/>
+
+                        <TextView
+                            android:id="@+id/changeCurrentWeight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:clickable="true"
                             android:focusable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:padding="4dp"
                             android:text="Change"
                             android:textColor="@color/purple900"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@id/textView6"
+                            app:layout_constraintBottom_toBottomOf="@id/textLabelCurrentWeight"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@id/textView6" />
-
-
-
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="12dp"
-                        android:paddingBottom="12dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Gender:"
-                            android:textColor="@android:color/black"
-                            android:textSize="20sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:text="Change"
-                            android:textColor="@color/purple900"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@id/textView6"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@id/textView6" />
-
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="12dp"
-                        android:paddingBottom="12dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Current Weight:"
-                            android:textColor="@android:color/black"
-                            android:textSize="20sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:text="Change"
-                            android:textColor="@color/purple900"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@id/textView6"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@id/textView6" />
-
-
+                            app:layout_constraintTop_toTopOf="@id/textLabelCurrentWeight" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="12dp"
-                        android:paddingBottom="12dp">
+                        android:paddingTop="16dp"
+                        android:paddingBottom="16dp">
 
                         <TextView
+                            android:id="@+id/textLabelTargetWeight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Target Weight:"
+                            android:text="Target Wt:"
                             android:textColor="@android:color/black"
-                            android:textSize="20sp"
-                            app:layout_constraintBottom_toBottomOf="parent"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
+                            android:id="@+id/textViewTargetWeightValue"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:text="Loading..."
+                            android:textColor="@android:color/black" android:textSize="18sp"
+                            app:layout_constraintEnd_toStartOf="@+id/changeTargetWeight"
+                            app:layout_constraintStart_toEndOf="@+id/textLabelTargetWeight"
+                            app:layout_constraintTop_toTopOf="@id/textLabelTargetWeight"
+                            app:layout_constraintBottom_toBottomOf="@id/textLabelTargetWeight"/>
+
+                        <TextView
+                            android:id="@+id/changeTargetWeight"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:clickable="true"
                             android:focusable="true"
+                            android:background="?attr/selectableItemBackground"
+                            android:padding="4dp"
                             android:text="Change"
                             android:textColor="@color/purple900"
                             android:textSize="16sp"
                             android:textStyle="bold"
-                            app:layout_constraintBottom_toBottomOf="@id/textView6"
+                            app:layout_constraintBottom_toBottomOf="@id/textLabelTargetWeight"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@id/textView6" />
-
-
+                            app:layout_constraintTop_toTopOf="@id/textLabelTargetWeight" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
+                    <Button
+                        android:id="@+id/buttonLogout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:backgroundTint="@color/logoutButtonColor"
+                        android:text="Logout"
+                        android:textColor="@color/white" />
 
-        <Button
-
-            android:layout_marginTop="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Logout"
-            android:background="#941313"/>
-
-
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </LinearLayout>
-    </ScrollView>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout> </androidx.constraintlayout.widget.ConstraintLayout> </LinearLayout> </ScrollView> </androidx.constraintlayout.widget.ConstraintLayout>

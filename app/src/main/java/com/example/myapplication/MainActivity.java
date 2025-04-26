@@ -40,18 +40,13 @@ public class MainActivity extends AppCompatActivity {
 
         Button loginButton = findViewById(R.id.logbutt);
         Button signupButton = findViewById(R.id.button2);
-        TextView welcomeText = findViewById(R.id.welcomeText);
-        TextView subtitleText = findViewById(R.id.subtitleText);
+
 
         // Set button click listeners
         loginButton.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Login_Page1.class)));
         signupButton.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, SignUp_Page.class)));
 
-        // Apply Gradient Effect to Welcome Text
-        applyGradientEffect(welcomeText, new int[]{Color.RED, Color.YELLOW});
 
-        // Apply Gradient Effect to Subtitle Text
-        applyGradientEffect(subtitleText, new int[]{Color.BLUE, Color.CYAN});
     }
 
     // Method to apply gradient effect to TextView

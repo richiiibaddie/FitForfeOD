@@ -6,6 +6,7 @@
     <color name="purple900">#9C27B0</color>
     <color name="f5f5f5">#F5F5F5</color>
     <color name="red">#B81212</color>
+    <color name="logoutButtonColor">#941313</color>
 
 
 </resources>
