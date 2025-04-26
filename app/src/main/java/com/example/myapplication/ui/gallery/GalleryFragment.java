@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.gallery; // Make sure this package matches your project structure
+package com.example.myapplication.ui.gallery;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -14,24 +14,23 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.myapplication.MainActivity; // Or your initial Activity after logout
-import com.example.myapplication.R; // Import your R class
-import com.example.myapplication.databinding.FragmentGalleryBinding; // Import generated binding class
+import com.example.myapplication.MainActivity;
+
+import com.example.myapplication.databinding.FragmentGalleryBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.SetOptions; // To merge data
-
+import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
+
 
 public class GalleryFragment extends Fragment {
 
     private static final String TAG = "GalleryFragment";
-    private FragmentGalleryBinding binding; // View Binding instance
+    private FragmentGalleryBinding binding;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
     private FirebaseUser currentUser;
@@ -40,11 +39,10 @@ public class GalleryFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // Inflate the layout using View Binding
+
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        // Initialize Firebase Auth and Firestore
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -57,30 +55,29 @@ public class GalleryFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         if (currentUser != null) {
-            // Get reference to the user's document in Firestore
+
             userDocRef = db.collection("Users").document(currentUser.getUid());
             loadUserData();
             setupClickListeners();
         } else {
-            // Handle case where user is somehow not logged in when accessing this screen
+
             Log.e(TAG, "User is not logged in!");
             Toast.makeText(getContext(), "Error: User not logged in.", Toast.LENGTH_SHORT).show();
-            // Optional: Navigate back to login screen
+
             navigateToLogin();
         }
     }
 
     private void loadUserData() {
-        // Load email from FirebaseAuth
+
         binding.textViewEmailValue.setText(currentUser.getEmail() != null ? currentUser.getEmail() : "N/A");
 
-        // Load other data from Firestore
+
         userDocRef.get().addOnSuccessListener(documentSnapshot -> {
             if (documentSnapshot.exists()) {
                 Log.d(TAG, "Firestore data found for user: " + currentUser.getUid());
                 String name = documentSnapshot.getString("name");
                 String gender = documentSnapshot.getString("gender");
-                // Use getDouble() or getLong() depending on how you store weights
                 Number currentWeightNum = (Number) documentSnapshot.get("currentWeight");
                 Number targetWeightNum = (Number) documentSnapshot.get("targetWeight");
 
@@ -88,7 +85,7 @@ public class GalleryFragment extends Fragment {
                 String targetWeight = (targetWeightNum != null) ? String.valueOf(targetWeightNum) : "N/A";
 
 
-                binding.textViewUsername.setText(name != null ? name : "User"); // Update top username
+                binding.textViewUsername.setText(name != null ? name : "User");
                 binding.textViewFullnameValue.setText(name != null ? name : "N/A");
                 binding.textViewGenderValue.setText(gender != null ? gender : "N/A");
                 binding.textViewCurrentWeightValue.setText(currentWeight);
@@ -96,7 +93,7 @@ public class GalleryFragment extends Fragment {
 
             } else {
                 Log.w(TAG, "No Firestore data found for user: " + currentUser.getUid());
-                // Set default values or prompt user to complete profile
+
                 binding.textViewUsername.setText(currentUser.getDisplayName() != null ? currentUser.getDisplayName() : "User"); // Fallback display name
                 binding.textViewFullnameValue.setText(currentUser.getDisplayName() != null ? currentUser.getDisplayName() : "Not Set");
                 binding.textViewGenderValue.setText("Not Set");
@@ -106,7 +103,7 @@ public class GalleryFragment extends Fragment {
         }).addOnFailureListener(e -> {
             Log.e(TAG, "Error loading Firestore data", e);
             Toast.makeText(getContext(), "Error loading profile data.", Toast.LENGTH_SHORT).show();
-            // Set default values maybe
+
             binding.textViewUsername.setText("User");
             binding.textViewFullnameValue.setText("Error");
             binding.textViewGenderValue.setText("Error");
@@ -122,42 +119,36 @@ public class GalleryFragment extends Fragment {
         binding.changeTargetWeight.setOnClickListener(v -> showInputDialog("Target Weight (kg)", "targetWeight", true)); // Indicate numeric input
 
         binding.changeEmail.setOnClickListener(v -> {
-            // Changing email is more complex and often requires re-authentication.
-            // Usually handled in a separate, dedicated screen/flow.
             Toast.makeText(getContext(), "Changing email requires re-authentication (Not implemented here).", Toast.LENGTH_LONG).show();
-            // Example: startActivity(new Intent(getActivity(), ChangeEmailActivity.class));
         });
 
         binding.buttonLogout.setOnClickListener(v -> {
             Log.d(TAG, "Logout button clicked.");
-            mAuth.signOut(); // Sign out from Firebase
+            mAuth.signOut();
             Toast.makeText(getContext(), "Logged out successfully.", Toast.LENGTH_SHORT).show();
-            navigateToLogin(); // Navigate back to Login/Main screen
+            navigateToLogin();
         });
     }
 
-    // Helper method to show a simple input dialog for changing data
+
     private void showInputDialog(String title, String fieldKey) {
-        showInputDialog(title, fieldKey, false); // Default to non-numeric
+        showInputDialog(title, fieldKey, false);
     }
 
     private void showInputDialog(String title, String fieldKey, boolean isNumeric) {
-        if (getContext() == null) return; // Prevent crash if context is not available
+        if (getContext() == null) return;
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("Change " + title);
 
-        // Set up the input
+
         final EditText input = new EditText(getContext());
-        // Specify the type of input expected
         if (isNumeric) {
             input.setInputType(android.text.InputType.TYPE_CLASS_NUMBER | android.text.InputType.TYPE_NUMBER_FLAG_DECIMAL);
         } else {
             input.setInputType(android.text.InputType.TYPE_CLASS_TEXT);
         }
         builder.setView(input);
-
-        // Set up the buttons
         builder.setPositiveButton("Save", (dialog, which) -> {
             String value = input.getText().toString().trim();
             if (!value.isEmpty()) {
@@ -171,7 +162,6 @@ public class GalleryFragment extends Fragment {
         builder.show();
     }
 
-    // Helper method to update a specific field in Firestore
     private void updateFirestoreField(String fieldKey, String value, boolean isNumeric) {
         if (userDocRef == null) {
             Log.e(TAG, "userDocRef is null, cannot update field: " + fieldKey);
@@ -184,7 +174,6 @@ public class GalleryFragment extends Fragment {
 
         if (isNumeric) {
             try {
-                // Store weights as numbers (Double for flexibility)
                 dataValue = Double.parseDouble(value);
             } catch (NumberFormatException e) {
                 Toast.makeText(getContext(), "Invalid number format.", Toast.LENGTH_SHORT).show();
@@ -197,14 +186,12 @@ public class GalleryFragment extends Fragment {
         data.put(fieldKey, dataValue);
 
 
-        userDocRef.set(data, SetOptions.merge()) // Use merge to only update specified fields
+        userDocRef.set(data, SetOptions.merge())
                 .addOnSuccessListener(aVoid -> {
                     Log.d(TAG, fieldKey + " updated successfully in Firestore.");
                     Toast.makeText(getContext(), fieldKey + " updated.", Toast.LENGTH_SHORT).show();
-                    // Update the UI immediately
-                    loadUserData(); // Reload data to show changes
+                    loadUserData();
 
-                    // Special handling for 'name' to update Firebase Auth display name too (optional)
                     if ("name".equals(fieldKey) && currentUser != null) {
                         updateFirebaseAuthProfileName(value);
                     }
@@ -215,7 +202,6 @@ public class GalleryFragment extends Fragment {
                 });
     }
 
-    // Optional: Update Firebase Auth display name when name is changed in Firestore
     private void updateFirebaseAuthProfileName(String name) {
         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                 .setDisplayName(name)
@@ -234,12 +220,11 @@ public class GalleryFragment extends Fragment {
 
     private void navigateToLogin() {
         if (getActivity() != null) {
-            // Change MainActivity.class to your actual Login Activity if different
+
             Intent intent = new Intent(getActivity(), MainActivity.class);
-            // Clear the back stack and start new task
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
-            getActivity().finish(); // Finish the current activity containing the fragment
+            getActivity().finish();
         } else {
             Log.e(TAG, "Cannot navigate to login, getActivity() is null");
         }
@@ -248,7 +233,6 @@ public class GalleryFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        // Release the binding instance when the view is destroyed
         binding = null;
     }
 }
