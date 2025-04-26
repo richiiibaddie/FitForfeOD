@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "814407355233",
+    "project_id": "fitforge-cca",
+    "storage_bucket": "fitforge-cca.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:814407355233:android:f9fb49851cebf4035ed320",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIM35PoysmESpci-d3wp1zpKvd0RZqLRw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

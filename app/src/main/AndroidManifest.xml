@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/fitforge_round"
+        android:label="FitForge"
+        android:roundIcon="@mipmap/fitforge_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication"
+        tools:targetApi="31">
+        <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ExerciseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ExercisePagerAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".ChestFragment"
+            android:exported="false" />
+        <activity
+            android:name=".Navdraw"
+            android:exported="false"
+            android:theme="@style/NoActionBar" />
+        <activity
+            android:name=".Navigationdrawer"
+            android:exported="false"
+            android:theme="@style/NoActionBar" />
+        <activity
+            android:name=".homepage"
+            android:exported="false" />
+        <activity
+            android:name=".Day1exercise"
+            android:exported="false" />
+        <activity
+            android:name=".Days"
+            android:exported="false" />
+        <activity
+            android:name=".Equipment"
+            android:exported="false" />
+        <activity
+            android:name=".Fitnesslevel"
+            android:exported="false" />
+        <activity
+            android:name=".TargetWeight"
+            android:exported="false" />
+        <activity
+            android:name=".Muscles"
+            android:exported="false" />
+        <activity
+            android:name=".Goal"
+            android:exported="false" />
+        <activity
+            android:name=".Gender"
+            android:exported="false" />
+        <activity
+            android:name=".SignUp_Page"
+            android:exported="false" />
+        <activity
+            android:name=".Login_Page1"
+            android:exported="false" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>

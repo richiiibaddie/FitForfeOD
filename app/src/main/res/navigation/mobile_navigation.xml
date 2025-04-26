@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.myapplication.ui.home.HomeFragment"
+        android:label=""
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_nav_home_to_chestFragment"
+            app:destination="@id/chestFragment" />
+
+        <action
+            android:id="@+id/action_nav_home_to_armsFragment"
+            app:destination="@id/armsFragment" />
+
+        <action
+            android:id="@+id/action_nav_home_to_glutesFragment"
+            app:destination="@id/glutesFragment" />
+
+        <action
+            android:id="@+id/action_nav_home_to_backFragment"
+            app:destination="@id/backFragment" />
+
+        <action
+            android:id="@+id/action_nav_home_to_legsFragment"
+            app:destination="@id/legsFragment" />
+
+        <action
+            android:id="@+id/action_nav_home_to_absFragment"
+            app:destination="@id/absFragment" />
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.example.myapplication.ui.gallery.GalleryFragment"
+        android:label=""
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/nav_slideshow"
+        android:name="com.example.myapplication.ui.slideshow.SlideshowFragment"
+        android:label=""
+        tools:layout="@layout/fragment_slideshow">
+
+    <action
+            android:id="@+id/action_slideshowFragment_to_day1Fragment"
+            app:destination="@id/day1Fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/day1Fragment"
+        android:name="com.example.myapplication.ui.days.Day1Fragment"
+        android:label=""
+        tools:layout="@layout/fragment_day1"/>
+
+
+    <fragment
+        android:id="@+id/chestFragment"
+        android:name="com.example.myapplication.ui.Chest.ChestFragment"
+        android:label=""
+        tools:layout="@layout/fragment_chest" />
+
+    <fragment
+        android:id="@+id/armsFragment"
+        android:name="com.example.myapplication.ui.Arms.ArmsFragment"
+        android:label=""
+        tools:layout="@layout/fragment_arms" />
+
+    <fragment
+        android:id="@+id/glutesFragment"
+        android:name="com.example.myapplication.ui.Glutes.GlutesFragment"
+        android:label=""
+        tools:layout="@layout/fragment_glutes" />
+    <fragment
+        android:id="@+id/backFragment"
+        android:name="com.example.myapplication.ui.Back.BackFragment"
+        android:label=""
+        tools:layout="@layout/fragment_back" />
+
+    <fragment
+        android:id="@+id/absFragment"
+        android:name="com.example.myapplication.ui.Abs.AbsFragment"
+        android:label=""
+        tools:layout="@layout/fragment_abs" />
+
+    <fragment
+        android:id="@+id/legsFragment"
+        android:name="com.example.myapplication.ui.Legs.LegsFragment"
+        android:label=""
+        tools:layout="@layout/fragment_glutes" />
+
+</navigation>
